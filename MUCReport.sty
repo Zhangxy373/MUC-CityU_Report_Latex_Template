@@ -1,0 +1,222 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%MUC课程论文模板
+%%作者：XinyueJun
+%%GitHub：https://github.com/Zhangxy373/MUC-CityU_Report_Latex_Template
+%%Overleaf：
+
+%%最后更改于2024/6/12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%在"中国人民大学课程论文模板"基础上修改而来
+%%原作者：xxmy7
+%%License：Apache-2.0 license
+%%GitHub：https://github.com/xxmy7/RUC_Report_Latex_Template
+%%Overleaf：https://www.overleaf.com/latex/templates/ruc-report-latex-template/hhwhvvwczbnm
+
+%%在"中国科学院大学课程论文模板"基础上修改而来
+%%原作者：jweihe
+%%GitHub：https://github.com/jweihe/UCAS_Latex_Template
+%%Overleaf：https://www.overleaf.com/latex/templates/zhong-guo-ke-xue-yuan-da-xue-ke-cheng-lun-wen-mo-ban/nphpxhhqvnds
+
+%%在"北京大学课程论文模板"基础上修改而来
+%%原作者：Shawn Wang
+%%Overleaf地址：https://www.overleaf.com/latex/templates/bei-jing-da-xue-ke-cheng-lun-wen-mo-ban/yntmqcktrzfh
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesPackage{MUCReport}
+
+%% 页边距
+\RequirePackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=2.50cm]{geometry}
+
+%% 一些必要的宏包
+\RequirePackage[unicode=true,colorlinks,urlcolor=blue,linkcolor=black,bookmarksnumbered=blue]{hyperref}
+\RequirePackage{latexsym,amssymb,amsmath,amsbsy,amsopn,amstext,amsthm,amsxtra,color,bm,calc,ifpdf}
+\RequirePackage{graphicx}
+\RequirePackage{enumerate}
+\RequirePackage{fancyhdr}
+\RequirePackage{listings}
+\RequirePackage{multirow}
+\RequirePackage{makeidx}
+\RequirePackage{xcolor}
+\RequirePackage{fontspec}
+\RequirePackage{subcaption} 
+\PassOptionsToPackage{hyphens}{url}
+\RequirePackage{pythonhighlight}
+\RequirePackage{wrapfig}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{orcidlink}
+
+%% 新增颜色定义
+% ------------------ BEGIN NEW COLOR DEFINITIONS -------------------
+\definecolor{CPPLight}  {HTML}{686868}
+\definecolor{CPPSteel}  {HTML}{888888}
+\definecolor{CPPDark}   {HTML}{262626}
+\definecolor{CPPBlue}   {HTML}{4172A3}
+\definecolor{CPPGreen}  {HTML}{487818}
+\definecolor{CPPBrown}  {HTML}{A07040}
+\definecolor{CPPRed}    {HTML}{AD4D3A}
+\definecolor{CPPViolet} {HTML}{7040A0}
+\definecolor{CPPGray}   {HTML}{B8B8B8}
+\definecolor{keywordcolor}{rgb}{0.8,0.1,0.5}
+\definecolor{webgreen}{rgb}{0,.5,0}
+\definecolor{bgcolor}{rgb}{0.92,0.92,0.92}
+% ------------------ END NEW COLOR DEFINITIONS ---------------------
+
+\RequirePackage{tcolorbox}
+\RequirePackage{fontawesome}
+\RequirePackage{caption}
+\captionsetup[table]{labelsep=space} % 表
+\captionsetup[figure]{labelsep=space} % 图
+\captionsetup[subfigure]{labelformat=simple} % 设置标签格式为简单模式，避免额外的括号
+%% 更改摘要二字的样式
+\renewcommand{\abstractname}{\textbf{\large {摘\quad 要}}}
+
+%可固定下划线长度
+\makeatletter
+\newcommand\dlmu[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+\makeatother
+
+%%对一些autoref的中文引用名作修改
+\def\equationautorefname{式}
+\def\footnoteautorefname{脚注}
+\def\itemautorefname{项}
+\def\figureautorefname{图}
+\def\tableautorefname{表}
+\def\partautorefname{篇}
+\def\appendixautorefname{附录}
+\def\chapterautorefname{章}
+\def\sectionautorefname{节}
+\def\subsectionautorefname{小小节}
+\def\subsubsectionautorefname{subsubsection}
+\def\paragraphautorefname{段落}
+\def\subparagraphautorefname{子段落}
+\def\FancyVerbLineautorefname{行}
+\def\theoremautorefname{定理}
+
+
+\newtheorem{Theorem}{定理}[section]
+\newtheorem{Lemma}[Theorem]{引理}
+\newtheorem{Corollary}[Theorem]{推论}
+\newtheorem{Proposition}[Theorem]{命题}
+\newtheorem{Definition}[Theorem]{定义}
+\newtheorem{Example}[Theorem]{例}
+
+%%参考文献设置
+\newcommand{\reference}{
+%\nocite{*}   %打开此选项会列出bib里面的所有参考文献
+\bibliographystyle{unsrt} %规定了参考文献的格式
+\begin{center} %居中
+	\bibliography{reference} %调出LaTeX生成参考文献列表
+\end{center}
+}
+
+%%文本框设置
+\newcommand{\tbox}[1]{
+\begin{center}
+\begin{tcolorbox}[colback=gray!10, %gray background
+                  colframe=black, % black frame colour
+                  width=8cm, % Use 8cm total width,
+                  arc=1mm, auto outer arc,
+                  boxrule=0.5pt,
+                 ]
+{#1}
+\end{tcolorbox}
+\end{center}
+}
+
+%%页眉设置
+\pagestyle{fancy}
+\fancyhead[L]{} %%留空则不显示
+\fancyhead[C]{\fangsong 页眉中} %%留空则不显示
+\fancyhead[R]{} %%留空则不显示
+
+%封面页设置
+{   
+    %标题
+    \title{ 
+        \vspace{1.5cm}
+        \heiti \Huge \textbf{{XXXX课程报告}} \par
+        \vspace{1cm} 
+        \heiti \Large {\underline{XXXXXX进展调研}}    
+        \vspace{3cm}
+    }
+
+    \author{
+        \vspace{0.5cm}
+        \kaishu\Large 学院\ \dlmu[9cm]{海南国际学院} \\ %学院
+        \vspace{0.5cm}
+        \kaishu\Large 专业\ \dlmu[9cm]{数据科学与大数据技术} \\ %班级
+        \vspace{0.5cm}
+        \kaishu\Large 学号\ \dlmu[9cm]{23160XXX} \qquad  \\ %学号
+        \vspace{0.5cm}
+        \kaishu\Large 姓名\ \dlmu[9cm]{XXX} \qquad \\ %姓名 
+    }
+        
+    \date{\today} % 默认为今天的日期，可以注释掉不显示日期
+}
+
+%%在这里可更改封面logo
+\newcommand{\cover}{
+%%封面校名logo，图片都在figures文件夹里
+\begin{figure}
+	\centering
+        %\vspace{cm}
+	\includegraphics[width=0.6\textwidth]{figures/muc.png}
+\end{figure} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.45\textwidth]{figures/CityU.png}
+\end{figure} 
+
+\maketitle
+}
+
+\lstset{
+    breaklines = true,                                   % 自动将长的代码行换行排版
+    extendedchars=false,                                 % 解决代码跨页时，章节标题，页眉等汉字不显示的问题
+    columns=fixed,       
+    numbers=left,                                        % 在左侧显示行号
+    basicstyle=\zihao{-5}\ttfamily,
+    numberstyle=\small,
+    frame=none,                                          % 不显示背景边框
+    % backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+    keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+    numberstyle=\footnotesize\color{darkgray},           % 设定行号格式
+    commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+    stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+    showstringspaces=false,                              % 不显示字符串中的空格
+    % frame=leftline,topline,rightline, bottomline         %分别对应只在左侧，上方，右侧，下方有竖线
+    frame=shadowbox,                                     % 设置阴影
+    rulesepcolor=\color{red!20!green!20!blue!20},        % 阴影颜色
+    basewidth=0.6em,
+}
+
+\lstdefinestyle{CPP}{
+    language=c++,                                        % 设置语言
+    morekeywords={alignas,continute,friend,register,true,alignof,decltype,goto,
+    reinterpret_cast,try,asm,defult,if,return,typedef,auto,delete,inline,short,
+    typeid,bool,do,int,signed,typename,break,double,long,sizeof,union,case,
+    dynamic_cast,mutable,static,unsigned,catch,else,namespace,static_assert,using,
+    char,enum,new,static_cast,virtual,char16_t,char32_t,explict,noexcept,struct,
+    void,export,nullptr,switch,volatile,class,extern,operator,template,wchar_t,
+    const,false,private,this,while,constexpr,float,protected,thread_local,
+    const_cast,for,public,throw,std},
+    emph={map,set,multimap,multiset,unordered_map,unordered_set,
+    unordered_multiset,unordered_multimap,vector,string,list,deque,
+    array,stack,forwared_list,iostream,memory,shared_ptr,unique_ptr,
+    random,bitset,ostream,istream,cout,cin,endl,move,default_random_engine,
+    uniform_int_distribution,iterator,algorithm,functional,bing,numeric,},
+    emphstyle=\color{CPPViolet}, 
+}
+
+\lstdefinestyle{Java}{
+    language=[AspectJ]Java,
+    keywordstyle=\color{keywordcolor}\bfseries
+}
+
+\lstdefinestyle{Python}{
+    language=Python,
+}
